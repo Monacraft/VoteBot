@@ -25,7 +25,7 @@ var dice = '🎲';
 
 
 client.on('ready', () => {
-    client.user.setGame("!help for cmds");
+    client.user.setGame("v!help for cmds");
     console.log(`Logged in as ${client.user.tag}!`);
 
 });
@@ -34,14 +34,14 @@ client.on('message', msg => {
     if (msg.author.id === devID) {
         // This ID is set to Monacraft's ID
         // Dev Commands
-        if (msg.content === '!shutdown') {
+        if (msg.content === 'v!shutdown') {
             if (msg.author.id === devID) {
                 shutdown = true;
                 msg.reply("Goodbye :')");
             }
         }
     }
-    if (msg.content.substring(0, 7) === "!avatar") {
+    if (msg.content.substring(0, 7) === "v!avatar") {
         if (msg.content.substring(7, msg.content.length) === '') {
             if (msg.author.avatarURL === null || msg.author.avatarURL === undefined) {
                 msg.reply("You do not have an avatar!");
@@ -60,17 +60,16 @@ client.on('message', msg => {
             }
         }
     }
-    if (msg.content === "!help") {
+    if (msg.content === "v!help") {
         msg.author.send(`__**Commands:**__
 \`\`\`
-!help
-!ping
-!avatar [?user]                 (user specifies whose avater)
-!startvote [topic]              (to start)
-!addvote                        (add option)
+v!help
+v!avatar [?user]               (user specifies whose avater)
+v!start [topic]                (to start)
+v!add [option]                 (add option)
 
 When adding options or creating vote description, prevent using \` and ;
-Bot by monacraft. Avatar command by preetham <3.
+Bot by Monacraft. Avatar command by Preetham <3.
 \`\`\``);
     }
     if (msg.author.id === myID) {
@@ -79,14 +78,14 @@ Bot by monacraft. Avatar command by preetham <3.
         }
     }
     var notP = true;
-    if (msg.content.substring(0, 10) === "!startvote" && notP) {
+    if (msg.content.substring(0, 10) === "v!start" && notP) {
         msg.delete();
         msg.channel.send(`__**Vote by:**__   ${msg.author}
 __**Topic:**__       ${msg.content.substring(11, msg.content.length)}
 =========================================================================
 `);
     }
-    if (msg.content.substring(0, 8) === "!addvote") {
+    if (msg.content.substring(0, 8) === "v!add") {
         msg.delete();
         var v = msg.content.substring(9, msg.content.length);
         msg.channel.fetchMessages({ limit: 100 }).then(messages => {
